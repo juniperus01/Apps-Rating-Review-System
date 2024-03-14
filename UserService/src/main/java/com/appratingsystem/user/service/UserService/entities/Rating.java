@@ -12,4 +12,5 @@ public class Rating {
     private String appId;
     private int rating;
     private String feedback;
+    private App app;
 }
