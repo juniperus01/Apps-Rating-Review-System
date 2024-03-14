@@ -11,6 +11,7 @@ import org.springframework.web.client.RestTemplate;
 @EnableDiscoveryClient
 public class UserServiceApplication {
 
+	@LoadBalanced
 	@Bean
 	public RestTemplate restTemplate(){
 		return new RestTemplate();
