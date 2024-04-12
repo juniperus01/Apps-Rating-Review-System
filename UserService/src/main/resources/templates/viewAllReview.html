@@ -68,7 +68,7 @@
     <!-- Review Container -->
     <div class="container">
         
-        <div class="review-container" th:action="@{users/getAllReviews}" method="get" th:object="${user}">
+        <div class="review-container" th:action="@{getAllReviews}" method="get" th:object="${user}">
             <div class="user-details">
                 <h2>User Details</h2>
                 <p><strong>User Name:</strong> <span th:text="${user.name}"></span></p>
@@ -76,11 +76,11 @@
             </div>
 
             <h2 class="mt-4 mb-4">All Reviews</h2>
-            <div th:each="review : ${reviews}">
+            <div th:each="review : ${user.ratings}">
                 <div class="review">
-                    <p><span class="app-name" th:text="${review.app.name}">App Name:</span></p>
-                    <p><span class="rating" th:text="${review.rating}">Rating:</span> </p>
-                    <p><span class="feedback" th:text="${review.feedback}">Feedback:</span> </p>
+                    <p><span class="app-name">App Name: <span th:text="${review.app.name}"></span></span></p>
+                    <p><span class="rating">Rating: <span th:text="${review.rating}"></span></span> </p>
+                    <p><span class="feedback">Feedback: <span th:text="${review.feedback}"></span></span> </p>
                 </div>
             </div>
         </div>
