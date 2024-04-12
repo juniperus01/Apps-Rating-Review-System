@@ -16,6 +16,6 @@ public class Rating {
     private String ratingId;
     private String userId;
     private String appId;
-    private int rating;
+    private String rating;
     private String feedback;
 }

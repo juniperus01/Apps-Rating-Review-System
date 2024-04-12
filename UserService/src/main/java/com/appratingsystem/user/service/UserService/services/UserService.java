@@ -17,6 +17,8 @@ public interface UserService {
     // get single user of given userId
     User getUser(String userId);
 
+    User getUserByEmail(String email);
+
     // TODO: delete
     //TODO: update
 

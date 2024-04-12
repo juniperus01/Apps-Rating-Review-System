@@ -12,4 +12,6 @@ public interface AppService {
     List<App> getAllApp();
     
     App getApp(String appId);
+    
+    App getAppByName(String appName);
 }

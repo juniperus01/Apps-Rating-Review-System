@@ -35,9 +35,16 @@ public class AppController {
         return ResponseEntity.ok(app);
     }
 
+    @GetMapping("/name/{appName}")
+    public ResponseEntity<App> getAppByName( @PathVariable String appName){
+        App app = appService.getAppByName(appName);
+        return ResponseEntity.ok(app);
+    }
+
     @GetMapping
     public ResponseEntity<List<App>> getAllApp(){
         List<App> allApp = appService.getAllApp();
         return ResponseEntity.ok(allApp);
     }
+
 }

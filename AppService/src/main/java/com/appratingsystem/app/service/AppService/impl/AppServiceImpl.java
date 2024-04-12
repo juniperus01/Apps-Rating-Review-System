@@ -28,9 +28,15 @@ public class AppServiceImpl implements AppService{
         return appRepository.findAll();
     }
 
-    @SuppressWarnings("null")
     @Override
     public App getApp(String appId){
         return appRepository.findById(appId).orElseThrow(() -> new ResourceNotFoundException("App with given id not found !!" + appId));
     }
+
+    @Override
+    public App getAppByName(String appName){
+        return appRepository.findByName(appName)
+                            .orElseThrow(() -> new ResourceNotFoundException("App with given name not found: " + appName));
+    }
+
 }

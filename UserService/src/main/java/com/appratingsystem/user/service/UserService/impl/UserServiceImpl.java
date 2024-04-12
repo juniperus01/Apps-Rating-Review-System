@@ -35,7 +35,6 @@ public class UserServiceImpl implements UserService{
         return userRepository.findAll();
     }
 
-    @SuppressWarnings("null")
     @Override
     public User getUser(String userId){
         User user = userRepository.findById(userId).orElseThrow(() -> new ResourceNotFoundException("User with given id is not found on server !!: " + userId));
@@ -50,6 +49,25 @@ public class UserServiceImpl implements UserService{
         }).collect(Collectors.toList());
 
         user.setRatings(ratingList);
+        return user;
+    }
+
+    @Override
+    public User getUserByEmail(String email){
+        User user = userRepository.findByEmail(email)
+                            .orElseThrow(() -> new ResourceNotFoundException("User with given email id not found: " + email));
+        Rating[] ratingsOfUser = restTemplate.getForObject("http://RATINGSERVICE/ratings/users/" + user.getUserId(), Rating[].class);
+
+        List<Rating> ratings = Arrays.stream(ratingsOfUser).toList();
+        List<Rating> ratingList = ratings.stream().map(rating -> {
+            ResponseEntity<App> forEntity = restTemplate.getForEntity("http://APPSERVICE/apps/" + rating.getAppId(), App.class);
+            App app = forEntity.getBody();
+            rating.setApp(app);
+            return rating;
+        }).collect(Collectors.toList());
+
+        user.setRatings(ratingList);
+
         return user;
     }
 }

@@ -36,4 +36,15 @@ public class User {
     @Transient
     private List<Rating> ratings = new ArrayList<>();
 
+    // toString method
+    @Override
+    public String toString() {
+        return "User{" +
+                "userId='" + userId + '\'' +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", ratings=" + ratings +
+                '}';
+    }
+
 }
